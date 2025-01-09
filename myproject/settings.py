@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-630sr!8zif6w4&-b628m8j1k$rmnkvm-s34qq2t!&3g6fuqz@4'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,22 +83,22 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 #     }
 # }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': str(Path('tester_db')),
-#         'USER': 'tester_user',
-#         'PASSWORD': '123456',
-#         'HOST': 'localhost',
-#         'PORT': '5432'
-#     }
-# }
-
 DATABASES = {
-    'default': dj_database_url.parse("postgresql://testblog_753h_user:79yNiErbfgyGw7w4E9aFWtd4wmN5mPNl@dpg-ctucob5ds78s73fmjvug-a.oregon-postgres.render.com/testblog_753h")
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': str(Path('tester_db')),
+        'USER': 'tester_user',
+        'PASSWORD': '123456',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
+}
+
+# DATABASES = {
+#     'default': dj_database_url.parse("postgresql://testblog_753h_user:79yNiErbfgyGw7w4E9aFWtd4wmN5mPNl@dpg-ctucob5ds78s73fmjvug-a.oregon-postgres.render.com/testblog_753h")
 
     
-}
+# }
 
 
 # Password validation
